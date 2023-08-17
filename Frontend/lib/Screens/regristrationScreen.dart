@@ -1,7 +1,8 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+
+import '../Api/RegisterUser.dart';
 
 class RegistrationPage extends StatelessWidget {
   @override
@@ -15,10 +16,12 @@ class RegistrationPage extends StatelessWidget {
   }
 }
 
-
 class RegistrationForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    TextEditingController name_controller = TextEditingController();
+    TextEditingController mobile_controller = TextEditingController();
+    TextEditingController pass_controller = TextEditingController();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -27,20 +30,26 @@ class RegistrationForm extends StatelessWidget {
         children: [
           TextField(
             decoration: InputDecoration(labelText: "Full Name"),
+            controller: name_controller,
           ),
           SizedBox(height: 16.0),
           TextField(
             decoration: InputDecoration(labelText: "Mobile No."),
+            controller: mobile_controller,
           ),
           SizedBox(height: 16.0),
           TextField(
             decoration: InputDecoration(labelText: "Password"),
             obscureText: true,
+            controller: pass_controller,
           ),
           SizedBox(height: 24.0),
           ElevatedButton(
             onPressed: () {
-      
+              String name = name_controller.text;
+              String mobileNo = (mobile_controller.text);
+              String password = pass_controller.text;
+              postData(name, password, mobileNo);
             },
             child: Text("Register"),
           ),
