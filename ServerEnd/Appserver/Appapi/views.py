@@ -5,6 +5,9 @@ from rest_framework.decorators import api_view
 
 
 # Create your views here.
+@api_view(['get'])
+def home(request):
+    return Response("Women are safe")
 
 @api_view(['post'])
 def send_otp(request):
