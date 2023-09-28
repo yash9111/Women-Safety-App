@@ -157,4 +157,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-API_KEY = 'f598bfe6-4fc7-11ee-addf-0200cd936042'
+# API_KEY = 'f598bfe6-4fc7-11ee-addf-0200cd936042'
