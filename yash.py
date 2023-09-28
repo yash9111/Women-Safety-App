@@ -1,0 +1,1 @@
+print("hello Worlsdd ke logo , jara aakh mai bhar lo paani , jo shaeed hue hai unki , jara yaad kro kruvani ")
