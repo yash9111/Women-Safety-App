@@ -12,12 +12,12 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int index_color = 0;
-  List screens = [Home(),Home(),Home(),Home()];
+  List screens = [Home(), Home(), Home(), Home()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[index_color],
-            bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: Padding(
           padding: const EdgeInsets.only(
@@ -47,7 +47,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   });
                 },
                 child: Icon(
-                  Icons.bar_chart_outlined,
+                  Icons.pin_drop_outlined,
                   size: 30,
                   color: index_color == 1 ? Color(0xff368983) : Colors.grey,
                 )),
@@ -61,7 +61,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   });
                 },
                 child: Icon(
-                  Icons.wallet,
+                  Icons.tips_and_updates_outlined,
                   size: 30,
                   color: index_color == 2 ? Color(0xff368983) : Colors.grey,
                 )),

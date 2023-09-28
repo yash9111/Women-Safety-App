@@ -26,7 +26,10 @@ class UserView(APIView):
         try:
             user = User.objects.get(mobile=mobile_number)
             if user.password == password:
-                return JsonResponse({'message': 'Login successful'}, status=200)
+                print("Successful")
+                # print(Response({'message': 'Login successful'},status=200))
+                print(JsonResponse({'message': 'Login successful'}))
+                return JsonResponse({'message': 'Login successful'})
             else:
                 return Response({'message': 'Invalid password'}, status=status.HTTP_401_UNAUTHORIZED)
         except User.DoesNotExist:
