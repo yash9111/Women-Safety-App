@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 import random
+from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import user_collection
 import random
@@ -16,7 +17,6 @@ def home(request):
 def send_otp(request):
     data = request.data
     phnm = data.get('phone_number')
-    request.session['phnm'] = phnm
 
     otp = random.randint(1000,9999)
     global otpshare
@@ -51,21 +51,36 @@ def send_otp(request):
 
 @api_view(['post'])
 def register_user(request):
+    data = request.data
+
     records = {
-       "name":"sudarshan"
+       "phone_number":data.get['phone_number'],
+       "password":data.get['passsword']
     }
-    user_collection.insert_one(records)
+    find_user =user_collection.find({"phone_number":data.get["phone_number"]})
+    if find_user is None:
+       user_collection.insert_one(records)
+       return Response(status=status.HTTP_201_CREATED)
+    else:
+       return Response(status=status.HTTP_208_ALREADY_REPORTED)
 
-    return Response({
-           'msg':"otp sent",
-       })
 
 
+@api_view(['post'])
+def loginuser(request):
+   
+   data = request.data
+   
+   find_user =user_collection.find({"phone_number":data.get["phone_number"]},{"password":data.get["password"]})
 
+   while True:
+      
+      if find_user is None:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+      else:
+         return Response(status=status.HTTP_302_FOUND)
+   
 
-# @api_view(['post'])
-# def call_user(request):
-#     pass
 
 # @api_view(['post'])
 # def send_sms(request):
