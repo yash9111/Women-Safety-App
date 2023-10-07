@@ -1,7 +1,13 @@
-import pymongo
+from pymongo.mongo_client import MongoClient
+import certifi
 
 
-url = 'mongodb://localhost:27017'
-client = pymongo.MongoClient(url)
 
-db = client['usercollect']
+uri = "mongodb+srv://women:women@cluster0.fuz1qu9.mongodb.net/?retryWrites=true&w=majority"  
+
+ca = certifi.where()
+client = MongoClient(uri )
+
+db = client['logincollection']
+print("connection done ")
+

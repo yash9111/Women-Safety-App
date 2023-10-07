@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,6 +88,14 @@ WSGI_APPLICATION = 'Appserver.wsgi.application'
 # }
 
 
+# DATABASES = {
+#       'default': {
+#           'ENGINE': 'djongo',
+#           'NAME': 'database',
+#       }
+#   }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -129,7 +139,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'Appapi.User'
+
 
 
 
@@ -157,4 +167,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-# API_KEY = 'f598bfe6-4fc7-11ee-addf-0200cd936042'
+ACCOUNT_SID = config('account_sid')
+AUTH_TOKEN = config('auth_token')
+
