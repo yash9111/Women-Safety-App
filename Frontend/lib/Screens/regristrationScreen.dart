@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:women_safety_app/Screens/otpScreen.dart';
 
 import '../Api/RegisterUser.dart';
 
@@ -49,9 +50,11 @@ class RegistrationForm extends StatelessWidget {
               String name = name_controller.text;
               String mobileNo = (mobile_controller.text);
               String password = pass_controller.text;
-              postData(name, password, mobileNo);
+              // String otp=toString(postData(name, password, mobileNo));
+              String otp="2290";
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>OTPScreen(otp:otp)));
             },
-            child: Text("Register"),
+            child: Text("Send OTP"),
           ),
         ],
       ),

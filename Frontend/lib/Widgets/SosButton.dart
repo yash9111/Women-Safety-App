@@ -1,5 +1,11 @@
+// import 'dart:html';
+
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class SOSButton extends StatelessWidget {
   @override
@@ -63,6 +69,8 @@ class SOSButton extends StatelessWidget {
                 // Add code to send SOS alerts or notifications here.
                 // You can call a function to handle the emergency alert.
                 // For now, we'll just close the dialog.
+                _sosFunction();
+
                 Navigator.of(context).pop(); // Close the dialog
               },
               child: Text('Send SOS'),
@@ -72,4 +80,17 @@ class SOSButton extends StatelessWidget {
       },
     );
   }
+}
+
+_sosFunction() async {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  // final String audioUrl = "assets/audios/sos.wav";
+
+  // await audioPlayer.play(
+  //     UrlSource(
+  //         'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg'),
+  //     volume: 100);
+
+  audioPlayer.setSource(AssetSource('assets/audios/sos.wav'));
 }

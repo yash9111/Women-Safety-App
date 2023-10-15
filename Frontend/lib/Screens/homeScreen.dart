@@ -110,31 +110,47 @@ calling() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.amber,
+            GestureDetector(
+              onTap: () => {print("Calling Police ")},
+              child: Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+                child: Image.asset('assets/images/policeicon.png'),
+              ),
             ),
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.amber,
-            )
+            GestureDetector(
+              onTap: () => {print("Calling Ambulance ")},
+              child: Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+                child: Image.asset('assets/images/policeicon.png'),
+              ),
+            ),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.amber,
+            GestureDetector(
+              onTap: () => {print("Calling Women Helpline ")},
+              child: Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+                child: Image.asset('assets/images/policeicon.png'),
+              ),
             ),
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.amber,
-            )
+            GestureDetector(
+              onTap: () => {print("Calling Fav Contacts ")},
+              child: Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber,
+                child: Image.asset('assets/images/policeicon.png'),
+              ),
+            ),
           ],
         ),
         Row(

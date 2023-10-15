@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:women_safety_app/Screens/homeScreen.dart';
 import 'package:women_safety_app/Screens/loginScreen.dart';
+import 'package:women_safety_app/Screens/mapScreen.dart';
 import 'package:women_safety_app/Screens/regristrationScreen.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+  const BottomNavigation({super.key});  
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();

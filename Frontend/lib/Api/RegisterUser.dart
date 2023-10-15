@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<void> postData(name, pass, mobile) async {
+Future<String> postData(name, pass, mobile) async {
   final response = await http.post(
     Uri.parse('http://127.0.0.1:8000/'),
     body: {
@@ -15,8 +15,10 @@ Future<void> postData(name, pass, mobile) async {
     final responseData = json.decode(response.body);
     // Handle the response data as needed
     // print('Response data: $responseData');
+    return responseData.otp;
   } else {
     // Handle error
     print('Request failed with status: ${response.statusCode}');
+    return "falsee";
   }
 }
