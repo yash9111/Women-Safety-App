@@ -13,41 +13,59 @@ from twilio.rest import Client
 def home(request):
     return Response("Women are safe")
 
+
+
 @api_view(['post'])
 def send_otp(request):
     data = request.data
-    phnm = data.get('phone_number')
 
-    otp = random.randint(1000,9999)
-    global otpshare
-    def otpshare():
-       return otp
+    otp = random.randint(100000,999999)
 
+    request.session['otp'] = otp
 
     if data.get('phone_number') is None:
-        return Response({'msg':'required number'})
+        return Response({'msg':'required+'},status=status.HTTP_401_UNAUTHORIZED)
 
     else:
+     
       try:
+        print(data.get('phone_number'))
+        print("done")
         account_sid = settings.ACCOUNT_SID
         auth_token = settings.AUTH_TOKEN
-
-        print(account_sid)
 
         client = Client(account_sid , auth_token)
 
         message = client.messages.create(
-           from_ ='+12565489967',
+           from_='+12568184915',
            body = f'your otp is {otp} please do not share this otp to anyone',
            to = data.get('phone_number')
-      )
+           )
+        return Response(status=status.HTTP_200_OK)
+        
       except Exception as e:
-       print(e)
-
+         print(e)
 
     return Response({
            'msg':"otp sent",
        })
+
+
+@api_view(['post'])
+def checkotp(request):
+   data = request.data
+   request.session['otp']=123
+   if data.get('otp') is None:
+      print()
+      return Response(status=status.HTTP_409_CONFLICT)
+
+   if data.get('otp') == 123:
+      print(123)
+      return Response({'msg':'ok'},status=status.HTTP_200_OK)
+   return Response(
+      {'msg':'reso'}
+   )
+      
 
 @api_view(['post'])
 def register_user(request):
@@ -63,7 +81,6 @@ def register_user(request):
        return Response(status=status.HTTP_201_CREATED)
     else:
        return Response(status=status.HTTP_208_ALREADY_REPORTED)
-
 
 
 @api_view(['post'])

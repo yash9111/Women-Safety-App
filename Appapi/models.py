@@ -1,3 +1,3 @@
 from .db_connection import db
 
-user_collection = db['database']
+user_collection = db['appuser']

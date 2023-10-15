@@ -28,7 +28,10 @@ SECRET_KEY = 'django-insecure-#4zfpspzrs(6&u!j-t&3bl-d6s+0pt%3d#)oae&20ozlad_=1i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '10.0.2.2',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -80,20 +83,15 @@ WSGI_APPLICATION = 'Appserver.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
-# DATABASES = {
-#       'default': {
-#           'ENGINE': 'djongo',
-#           'NAME': 'database',
-#       }
-#   }
+DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'safetyapp',
+       }
+   }
+
 
 
 # Password validation
@@ -138,8 +136,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
 
 
 
