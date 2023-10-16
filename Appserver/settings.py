@@ -89,6 +89,9 @@ DATABASES = {
        'default': {
            'ENGINE': 'djongo',
            'NAME': 'safetyapp',
+           'CLIENT':{
+               'host':"mongodb+srv://women:women@cluster0.zimpg2o.mongodb.net/?retryWrites=true&w=majority",
+           }
        }
    }
 
@@ -166,4 +169,6 @@ CORS_ALLOWED_ORIGINS = [
 
 ACCOUNT_SID = config('account_sid')
 AUTH_TOKEN = config('auth_token')
+
+URI = config('uri')
 

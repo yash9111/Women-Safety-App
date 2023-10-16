@@ -31,6 +31,7 @@ def send_otp(request):
       try:
         print(data.get('phone_number'))
         print("done")
+        
         account_sid = settings.ACCOUNT_SID
         auth_token = settings.AUTH_TOKEN
 
@@ -54,16 +55,17 @@ def send_otp(request):
 @api_view(['post'])
 def checkotp(request):
    data = request.data
-   request.session['otp']=123
+  
    if data.get('otp') is None:
       print()
       return Response(status=status.HTTP_409_CONFLICT)
 
-   if data.get('otp') == 123:
+   if data.get('otp') == f"{request.session['otp']}": 
       print(123)
       return Response({'msg':'ok'},status=status.HTTP_200_OK)
-   return Response(
-      {'msg':'reso'}
+   else:
+      return Response(
+      {'msg':'error'}
    )
       
 
