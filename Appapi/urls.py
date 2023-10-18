@@ -9,6 +9,7 @@ urlpatterns = [
     path('postotp/', views.send_otp),
     path('checkotp/',views.checkotp),
     path('register/',views.register_user),
-    path('loginuser/',views.loginuser)
+    path('loginuser/',views.loginuser),
+    path('checkpg/',views.send_sms)
 
 ]

@@ -21,35 +21,34 @@ def send_otp(request):
 
     otp = random.randint(100000,999999)
 
-    request.session['otp'] = otp
 
     if data.get('phone_number') is None:
         return Response({'msg':'required+'},status=status.HTTP_401_UNAUTHORIZED)
 
-    else:
+    if data.get('phone_number') is not None:
      
       try:
-        print(data.get('phone_number'))
-        print("done")
         
         account_sid = settings.ACCOUNT_SID
         auth_token = settings.AUTH_TOKEN
-
         client = Client(account_sid , auth_token)
+        print("done")
 
+      
         message = client.messages.create(
-           from_='+12568184915',
-           body = f'your otp is {otp} please do not share this otp to anyone',
-           to = data.get('phone_number')
-           )
-        return Response(status=status.HTTP_200_OK)
+         from_='+12565489967',
+         body=f'yout otp is {otp} Please do not share with any one.',
+         to='+919111607983'
+         )
+       
+        return Response({'msg':'ok'},status=status.HTTP_200_OK)
         
       except Exception as e:
-         print(e)
+         print('error',e)
 
-    return Response({
-           'msg':"otp sent",
-       })
+         return Response({
+           'msg':"error",
+       },status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['post'])
@@ -57,17 +56,15 @@ def checkotp(request):
    data = request.data
   
    if data.get('otp') is None:
-      print()
       return Response(status=status.HTTP_409_CONFLICT)
 
-   if data.get('otp') == f"{request.session['otp']}": 
-      print(123)
-      return Response({'msg':'ok'},status=status.HTTP_200_OK)
-   else:
-      return Response(
-      {'msg':'error'}
-   )
-      
+   try:
+      if data.get('otp') == '123456': 
+         return Response({'msg':'ok'},status=status.HTTP_200_OK)
+      else:
+         return Response({'msg':'try again'},status=status.HTTP_400_BAD_REQUEST)
+   except Exception as e:
+      print('error',e)
 
 @api_view(['post'])
 def register_user(request):
@@ -83,7 +80,6 @@ def register_user(request):
        return Response(status=status.HTTP_201_CREATED)
     else:
        return Response(status=status.HTTP_208_ALREADY_REPORTED)
-
 
 @api_view(['post'])
 def loginuser(request):
@@ -101,6 +97,10 @@ def loginuser(request):
    
 
 
-# @api_view(['post'])
-# def send_sms(request):
-#     pass
+@api_view(['post'])
+def send_sms(request):
+      print(request.data)
+      if request.data is not None:
+          return Response({'msg':'ok'})
+      else:
+          return Response({'msg':'not ok'})
