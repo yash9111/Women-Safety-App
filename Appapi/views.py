@@ -34,7 +34,7 @@ def send_otp(request):
         client = Client(account_sid , auth_token)
         print("done")
 
-      
+   
         message = client.messages.create(
          from_='+12565489967',
          body=f'yout otp is {otp} Please do not share with any one.',
@@ -66,41 +66,37 @@ def checkotp(request):
    except Exception as e:
       print('error',e)
 
-@api_view(['post'])
-def register_user(request):
-    data = request.data
 
-    records = {
-       "phone_number":data.get['phone_number'],
-       "password":data.get['passsword']
-    }
-    find_user =user_collection.find({"phone_number":data.get["phone_number"]})
-    if find_user is None:
-       user_collection.insert_one(records)
-       return Response(status=status.HTTP_201_CREATED)
-    else:
-       return Response(status=status.HTTP_208_ALREADY_REPORTED)
+    
+@api_view(['post'])
+def checkdetails(request):
+   data = request.data
+   name = data.get('name')
+   email = data.get('email')
+   phnm = data.get('phone_number')
+   pswd = data.get('password')
+
+   records = [{'name':name,'email':email,'phnm':phnm,'pswd':pswd}]
+
+   try:
+      user_collection.insert_many (records)
+      return Response(status=status.HTTP_200_OK)
+   except Exception as e:
+      print(e)
+      return Response(status=status.HTTP_400_BAD_REQUEST)
+   
 
 @api_view(['post'])
 def loginuser(request):
    
    data = request.data
    
-   find_user =user_collection.find({"phone_number":data.get["phone_number"]},{"password":data.get["password"]})
+   find_user =user_collection.find_one({'phnm':data.get('phone_number')})
 
-   while True:
-      
-      if find_user is None:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-      else:
-         return Response(status=status.HTTP_302_FOUND)
-   
+   if data.get('phone_number') == find_user['phnm']:
+      if data.get('password')== find_user['pswd']:
+         return Response(status=status.HTTP_200_OK)
+   else:
+      return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view(['post'])
-def send_sms(request):
-      print(request.data)
-      if request.data is not None:
-          return Response({'msg':'ok'})
-      else:
-          return Response({'msg':'not ok'})
